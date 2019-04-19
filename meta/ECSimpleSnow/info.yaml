@@ -1,6 +1,6 @@
 name: ECSimpleSnow
 summary:
-  ECSimpleSnow was orginal developed by Ross Brown and Bruce Brasnett
+  ECSimpleSnow was orginally developed by Ross Brown and Bruce Brasnett
   in Environment Canada (EC). It is an empirical algorithm to melt
   snow according to the surface temperature and increase in snow depth
   according to the precipitation that has fallen since the last
