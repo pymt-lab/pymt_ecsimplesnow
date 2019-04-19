@@ -1,0 +1,28 @@
+name: ECSimpleSnow
+summary:
+  ECSimpleSnow was orginal developed by Ross Brown and Bruce Brasnett
+  in Environment Canada (EC). It is an empirical algorithm to melt
+  snow according to the surface temperature and increase in snow depth
+  according to the precipitation that has fallen since the last
+  analysis time. It is a semi-empirical temperature index model. It
+  provides a quick and acceptable answer when you only have very
+  limited inputs. The one deficiency of the model is that it does not
+  take account of the heat budget of the snowpack which means it will
+  melt snow too quickly in the spring.
+url: https://github.com/permamodel/Snow_BMI_Fortran
+author: Kang Wang, Ross Brown, and Bruce Brasnett
+email: Kang.Wang@colorado.edu
+version: 1.0.1
+license: Apache License 2.0
+doi:
+cite_as: |
+ @article{brown2003gridded,
+  title={Gridded North American monthly snow depth and snow water equivalent for GCM evaluation},
+  author={Brown, Ross D and Brasnett, Bruce and Robinson, David},
+  journal={Atmosphere-Ocean},
+  volume={41},
+  number={1},
+  pages={1--14},
+  year={2003},
+  publisher={Taylor \& Francis}
+ }

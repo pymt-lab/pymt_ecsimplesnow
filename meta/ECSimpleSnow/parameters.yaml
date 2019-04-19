@@ -1,0 +1,83 @@
+run_duration:
+  description: Length of model run
+  value:
+    type: int
+    default: 60
+    range:
+      min: 0
+      max: 1000000
+    units: d
+input_files_path:
+  description:
+    Path to input temperature and precipitation files (leave blank if
+    data files are located with configuration file)
+  value:
+    type: string
+    default: ''
+    units: '-'
+land_surface_air__temperature_file:
+  description:
+    File with surface temperature values, in deg C
+  value:
+    type: string
+    default: 'tair.csv'
+    units: '-'
+precipitation_mass_flux_file:
+  description:
+    File with precipitation values, in mm
+  value:
+    type: string
+    default: 'prec.csv'
+    units: '-'
+snow_class:
+  description:
+    Snow climate class (a code from 0-7) (Sturm et al., 1995) 
+  value:
+    type: int
+    default: 1
+    range:
+      min: 0
+      max: 7
+    units: '-'
+open_area_or_not:
+  description:
+    Forested/open flag for validating results in boreal, forest zone
+    (Most snow depths are measured at open sites) [1=Open, 0=Forested]
+  value:
+    type: int
+    default: 1
+    range:
+      min: 0
+      max: 1
+    units: '-'
+precipitation_mass_flux_adjust_factor:
+  description:
+    Precipitation mass flux adjustment factor for canopy
+    interception/sublimation [0-1]
+  value:
+    type: float
+    default: 1.0
+    range:
+      min: 0.0
+      max: 1.0
+    units: '-'
+snowpack__initial_depth:
+  description:
+    Initial snow depth
+  value:
+    type: float
+    default: 0.0
+    range:
+      min: 0.0
+      max: 100000.0
+    units: 'cm'
+snowpack__initial_mass_per_volume_density:
+  description:
+    Initial mean density of the snow pack
+  value:
+    type: float
+    default: 200.0
+    range:
+      min: 1.0
+      max: 10000.0
+    units: 'kg3 m-3'
