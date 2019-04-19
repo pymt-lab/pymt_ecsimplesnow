@@ -1,0 +1,4 @@
+name: ecsimplesnow
+language: fortran
+package: ecsimplesnow
+class: ECSimpleSnow

@@ -1,0 +1,20 @@
+build:
+  define_macros: []
+  extra_compile_args: []
+  include_dirs: []
+  libraries: []
+  library_dirs: []
+  undef_macros: []
+info:
+  github_username: wk1984
+  plugin_author: Kang Wang
+  plugin_license: Apache-2.0
+  summary: PyMT plugin for ECSimpleSnow
+library:
+  entry_point:
+  - ECSimpleSnow=bmisnowf:bmi_snow
+  language: fortran
+  register: ''
+plugin:
+  name: ecsimplesnow
+  requirements: []
