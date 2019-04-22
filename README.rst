@@ -4,14 +4,14 @@ pymt_ecsimplesnow
 
 
 .. image:: https://img.shields.io/badge/CSDMS-Basic%20Model%20Interface-green.svg
-        :target: https://bmi-forum.readthedocs.io/
+        :target: https://bmi.readthedocs.io/
         :alt: Basic Model Interface
 
 .. image:: https://img.shields.io/badge/recipe-pymt_ecsimplesnow-green.svg
         :target: https://anaconda.org/conda-forge/pymt_ecsimplesnow
 
-.. image:: https://img.shields.io/travis/wk1984/pymt_ecsimplesnow.svg
-        :target: https://travis-ci.org/wk1984/pymt_ecsimplesnow
+.. image:: https://img.shields.io/travis/pymt-lab/pymt_ecsimplesnow.svg
+        :target: https://travis-ci.org/pymt-lab/pymt_ecsimplesnow
 
 .. image:: https://readthedocs.org/projects/pymt_ecsimplesnow/badge/?version=latest
         :target: https://pymt_ecsimplesnow.readthedocs.io/en/latest/?badge=latest
@@ -30,11 +30,11 @@ PyMT plugin for ECSimpleSnow
 
 
 
-========= =======================================
+========= ===================================
 Component PyMT
-========= =======================================
-ECSimpleSnow `from pymt.components import ECSimpleSnow`
-========= =======================================
+========= ===================================
+ECSimpleSnow `from pymt.models import ECSimpleSnow`
+========= ===================================
 
 ---------------
 Installing pymt
