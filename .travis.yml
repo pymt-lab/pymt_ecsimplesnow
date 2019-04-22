@@ -39,4 +39,4 @@ install:
 script:
 - python setup.py develop
 - python -c 'import pymt_ecsimplesnow'
-- bmi-test pymt_ecsimplesnow.bmi:ECSimpleSnow -vvv
+- bmi-test pymt_ecsimplesnow.bmi:ECSimpleSnow -vvv --bmi-version=1.0
