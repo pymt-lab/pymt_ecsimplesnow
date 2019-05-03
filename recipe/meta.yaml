@@ -21,9 +21,11 @@ requirements:
     - cython
     - numpy 1.11.*
     - model_metadata
+    - ecsimplesnow 
   run:
     - python
     - {{ pin_compatible('numpy') }}
+    - ecsimplesnow 
 
 test:
   requires:

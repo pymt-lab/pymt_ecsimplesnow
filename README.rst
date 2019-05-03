@@ -72,7 +72,12 @@ It is possible to list all of the versions of `pymt` available on your platform 
 Installing pymt_ecsimplesnow
 ----------------------------
 
+Once `pymt` is installed, the dependencies of `pymt_ecsimplesnow` can
+be installed with:
 
+.. code::
+
+  conda install ecsimplesnow
 
 To install `pymt_ecsimplesnow`,
 

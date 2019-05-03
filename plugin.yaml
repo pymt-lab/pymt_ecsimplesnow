@@ -17,4 +17,5 @@ library:
   register: ''
 plugin:
   name: ecsimplesnow
-  requirements: []
+  requirements:
+  - ecsimplesnow
