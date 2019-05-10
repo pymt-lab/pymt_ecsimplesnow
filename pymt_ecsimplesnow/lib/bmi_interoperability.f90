@@ -4,7 +4,7 @@
 module bmi_interoperability
 
   use, intrinsic :: iso_c_binding
-  use bmif
+  use bmif_1_2
   use bmisnowf
 
   implicit none
