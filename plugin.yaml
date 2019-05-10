@@ -18,4 +18,5 @@ library:
 plugin:
   name: ecsimplesnow
   requirements:
+  - bmi-fortran=1.2
   - ecsimplesnow

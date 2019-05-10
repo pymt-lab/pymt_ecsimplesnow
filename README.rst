@@ -77,7 +77,7 @@ be installed with:
 
 .. code::
 
-  conda install ecsimplesnow
+  conda install bmi-fortran=1.2 ecsimplesnow
 
 To install `pymt_ecsimplesnow`,
 
