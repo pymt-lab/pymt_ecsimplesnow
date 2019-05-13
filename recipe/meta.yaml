@@ -13,6 +13,8 @@ requirements:
   build:
     - {{ compiler('c') }}
     - {{ compiler('fortran') }}
+    - bmi-fortran=1.2 
+    - ecsimplesnow 
   host:
     - python
     - pip
