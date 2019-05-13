@@ -37,7 +37,7 @@ test:
     - pymt_ecsimplesnow
   commands:
     - config_file=$(mmd-stage ECSimpleSnow . > MANIFEST && mmd-query ECSimpleSnow --var=run.config_file.path)
-    - bmi-test pymt_ecsimplesnow.bmi:ECSimpleSnow --config-file=$config_file --manifest=MANIFEST -v
+    - bmi-test pymt_ecsimplesnow.bmi:ECSimpleSnow --config-file=$config_file --manifest=MANIFEST -v --bmi-version=1.0
 
 about:
   summary: Python package that wraps the ecsimplesnow BMI.
