@@ -40,7 +40,7 @@ ext_modules = [
         ["pymt_ecsimplesnow/lib/ecsimplesnow.pyx"],
         libraries=libraries + ["bmisnowf"],
         extra_objects=['pymt_ecsimplesnow/lib/bmi_interoperability.o'],
-        **common_flags,
+        **common_flags
     ),
 ]
 
