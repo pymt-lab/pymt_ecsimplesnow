@@ -34,6 +34,11 @@ common_flags = {
 libraries = [
 ]
 
+# Locate directories under Windows %LIBRARY_PREFIX%.
+if sys.platform.startswith("win"):
+    common_flags["include_dirs"].append(os.path.join(sys.prefix, "Library", "include"))
+    common_flags["library_dirs"].append(os.path.join(sys.prefix, "Library", "lib"))
+
 ext_modules = [
     Extension(
         "pymt_ecsimplesnow.lib.ecsimplesnow",
@@ -59,7 +64,8 @@ def build_interoperability():
     cmd = []
     cmd.append(compiler.compiler_f90[0])
     cmd.append(compiler.compile_switch)
-    cmd.append('-fPIC')
+    if sys.platform.startswith("win") is False:
+        cmd.append("-fPIC")
     for include_dir in common_flags['include_dirs']:
         if os.path.isabs(include_dir) is False:
             include_dir = os.path.join(sys.prefix, "include", include_dir)
