@@ -34,6 +34,11 @@ common_flags = {
 libraries = [
 ]
 
+# Locate directories under Windows %LIBRARY_PREFIX%.
+if sys.platform.startswith("win"):
+    common_flags["include_dirs"].append(os.path.join(sys.prefix, "Library", "include"))
+    common_flags["library_dirs"].append(os.path.join(sys.prefix, "Library", "lib"))
+
 ext_modules = [
     Extension(
         "pymt_ecsimplesnow.lib.ecsimplesnow",
