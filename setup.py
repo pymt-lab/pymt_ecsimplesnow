@@ -57,8 +57,15 @@ pymt_components = [(
 ]
 
 
+def get_fcompiler():
+    compiler=None
+    if sys.platform.startswith("win"):
+        compiler="flang"
+    return new_fcompiler(compiler=compiler)
+
+
 def build_interoperability():
-    compiler = new_fcompiler()
+    compiler = get_fcompiler()
     compiler.customize()
 
     cmd = []
