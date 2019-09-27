@@ -64,9 +64,18 @@ def get_fcompiler():
     return new_fcompiler(compiler=compiler)
 
 
+def get_finclude(compiler):
+    if sys.platform.startswith("win"):
+        lib_dir = compiler.library_dir[0]
+        inc_dir = os.path.join(os.path.dirname(lib_dir), "include")
+        common_flags["include_dirs"].append(inc_dir)
+
+
 def build_interoperability():
     compiler = get_fcompiler()
     compiler.customize()
+    compiler.dump_properties()
+    get_finclude(compiler)
 
     cmd = []
     cmd.append(compiler.compiler_f90[0])
