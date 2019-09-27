@@ -92,6 +92,9 @@ def build_interoperability(compiler):
         cmd.append('-I{}'.format(include_dir))
     cmd.append('bmi_interoperability.f90')
 
+    if sys.platform.startswith("win"):
+        cmd = ["flang", "-c", "-v", "bmi_interoperability.f90"]
+
     print("*4* {}".format(cmd))
 
     try:
