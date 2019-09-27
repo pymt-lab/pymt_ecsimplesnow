@@ -66,7 +66,7 @@ def get_fcompiler():
 
 def get_finclude(compiler):
     if sys.platform.startswith("win"):
-        lib_dir = compiler.library_dir[0]
+        lib_dir = compiler.library_dirs[0]
         inc_dir = os.path.join(os.path.dirname(lib_dir), "include")
         common_flags["include_dirs"].append(inc_dir)
 
