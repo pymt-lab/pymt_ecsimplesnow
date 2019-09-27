@@ -58,26 +58,26 @@ pymt_components = [(
 
 
 def get_finclude(compiler):
-    if sys.platform.startswith("win"):
-        lib_dir = compiler.library_dirs[0]
-        inc_dir = os.path.join(os.path.dirname(lib_dir), "include")
-        common_flags["include_dirs"].append(inc_dir)
+    lib_dir = compiler.library_dirs[0]
+    inc_dir = os.path.join(os.path.dirname(lib_dir), "include")
+    common_flags["include_dirs"].append(inc_dir)
     
-        from glob import glob
-        paths = glob(os.path.join(inc_dir, "iso_c_binding.mod"), recursive=True)
-        print("*2* {}".format(paths))
+    from glob import glob
+    paths = glob(os.path.join(inc_dir, "iso_c_binding.mod"), recursive=True)
+    print("*2* {}".format(paths))
 
 
 def get_fcompiler():
+    print("*1* {}".format(sys.platform))
     hint=None
     if sys.platform.startswith("win"):
         hint="flang"
     compiler = new_fcompiler(compiler=hint)
-    print("*1* {}".format(sys.platform))
     compiler.customize()
-    compiler.dump_properties()
-    get_finclude(compiler)
+    if sys.platform.startswith("win"):
+        get_finclude(compiler)
     print("*3* {}".format(common_flags["include_dirs"]))
+    return compiler
 
 
 def build_interoperability(compiler):
@@ -104,6 +104,7 @@ class build_ext(_build_ext):
 
     def run(self):
         compiler = get_fcompiler()
+        compiler.dump_properties()
         with cd('pymt_ecsimplesnow/lib'):
             build_interoperability(compiler)
         _build_ext.run(self)
