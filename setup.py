@@ -36,8 +36,10 @@ libraries = [
 
 # Locate directories under Windows %LIBRARY_PREFIX%.
 if sys.platform.startswith("win"):
-    common_flags["include_dirs"].append(os.path.join(sys.prefix, "Library", "include"))
-    common_flags["library_dirs"].append(os.path.join(sys.prefix, "Library", "lib"))
+    common_flags["include_dirs"].append(os.path.join(sys.prefix,
+                                                     "Library", "include"))
+    common_flags["library_dirs"].append(os.path.join(sys.prefix,
+                                                     "Library", "lib"))
 
 ext_modules = [
     Extension(
@@ -57,42 +59,23 @@ pymt_components = [(
 ]
 
 
-def get_finclude(compiler):
-    lib_dir = compiler.library_dirs[0]
-    inc_dir = os.path.join(os.path.dirname(lib_dir), "include")
-    common_flags["include_dirs"].append(inc_dir)
-    
-    from glob import glob
-    paths = glob(os.path.join(inc_dir, "iso_c_binding.mod"), recursive=True)
-    print("*2* {}".format(paths))
-
-
 def get_fcompiler():
-    print("*1* {}".format(sys.platform))
     hint=None
     if sys.platform.startswith("win"):
         hint="flang"
-    compiler = new_fcompiler(compiler=hint)
-    compiler.customize()
-    if sys.platform.startswith("win"):
-        get_finclude(compiler)
-    print("*3* {}".format(common_flags["include_dirs"]))
-    return compiler
+    fcompiler = new_fcompiler(compiler=hint)
+    fcompiler.customize()
+    return fcompiler
 
 
 def build_interoperability(compiler):
-    cmd = []
-    cmd.append(compiler.compiler_f90[0])
+    cmd = compiler.compiler_f90
     cmd.append(compiler.compile_switch)
-    if sys.platform.startswith("win") is False:
-        cmd.append("-fPIC")
     for include_dir in common_flags['include_dirs']:
         if os.path.isabs(include_dir) is False:
             include_dir = os.path.join(sys.prefix, "include", include_dir)
         cmd.append('-I{}'.format(include_dir))
     cmd.append('bmi_interoperability.f90')
-
-    print("*4* {}".format(cmd))
 
     try:
         subprocess.check_call(cmd)
@@ -103,10 +86,10 @@ def build_interoperability(compiler):
 class build_ext(_build_ext):
 
     def run(self):
-        compiler = get_fcompiler()
-        compiler.dump_properties()
+        fcompiler = get_fcompiler()
+        fcompiler.dump_properties()
         with cd('pymt_ecsimplesnow/lib'):
-            build_interoperability(compiler)
+            build_interoperability(fcompiler)
         _build_ext.run(self)
 
 
