@@ -36,8 +36,10 @@ libraries = [
 
 # Locate directories under Windows %LIBRARY_PREFIX%.
 if sys.platform.startswith("win"):
-    common_flags["include_dirs"].append(os.path.join(sys.prefix, "Library", "include"))
-    common_flags["library_dirs"].append(os.path.join(sys.prefix, "Library", "lib"))
+    common_flags["include_dirs"].append(os.path.join(sys.prefix,
+                                                     "Library", "include"))
+    common_flags["library_dirs"].append(os.path.join(sys.prefix,
+                                                     "Library", "lib"))
 
 ext_modules = [
     Extension(
@@ -57,20 +59,12 @@ pymt_components = [(
 ]
 
 
-def get_finclude(compiler):
-    lib_dir = compiler.library_dirs[0]
-    inc_dir = os.path.join(os.path.dirname(lib_dir), "include")
-    common_flags["include_dirs"].append(inc_dir)
-
-
 def get_fcompiler():
     hint=None
     if sys.platform.startswith("win"):
         hint="flang"
     compiler = new_fcompiler(compiler=hint)
     compiler.customize()
-    if sys.platform.startswith("win"):
-        get_finclude(compiler)
     return compiler
 
 
