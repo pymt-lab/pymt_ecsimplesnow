@@ -61,14 +61,9 @@ def get_finclude(compiler):
     lib_dir = compiler.library_dirs[0]
     inc_dir = os.path.join(os.path.dirname(lib_dir), "include")
     common_flags["include_dirs"].append(inc_dir)
-    
-    from glob import glob
-    paths = glob(os.path.join(inc_dir, "iso_c_binding.mod"), recursive=True)
-    print("*2* {}".format(paths))
 
 
 def get_fcompiler():
-    print("*1* {}".format(sys.platform))
     hint=None
     if sys.platform.startswith("win"):
         hint="flang"
@@ -76,7 +71,6 @@ def get_fcompiler():
     compiler.customize()
     if sys.platform.startswith("win"):
         get_finclude(compiler)
-    print("*3* {}".format(common_flags["include_dirs"]))
     return compiler
 
 
@@ -91,8 +85,6 @@ def build_interoperability(compiler):
             include_dir = os.path.join(sys.prefix, "include", include_dir)
         cmd.append('-I{}'.format(include_dir))
     cmd.append('bmi_interoperability.f90')
-
-    print("*4* {}".format(cmd))
 
     try:
         subprocess.check_call(cmd)
