@@ -63,17 +63,14 @@ def get_fcompiler():
     hint=None
     if sys.platform.startswith("win"):
         hint="flang"
-    compiler = new_fcompiler(compiler=hint)
-    compiler.customize()
-    return compiler
+    fcompiler = new_fcompiler(compiler=hint)
+    fcompiler.customize()
+    return fcompiler
 
 
 def build_interoperability(compiler):
-    cmd = []
-    cmd.append(compiler.compiler_f90[0])
+    cmd = compiler.compiler_f90
     cmd.append(compiler.compile_switch)
-    if sys.platform.startswith("win") is False:
-        cmd.append("-fPIC")
     for include_dir in common_flags['include_dirs']:
         if os.path.isabs(include_dir) is False:
             include_dir = os.path.join(sys.prefix, "include", include_dir)
@@ -89,10 +86,10 @@ def build_interoperability(compiler):
 class build_ext(_build_ext):
 
     def run(self):
-        compiler = get_fcompiler()
-        compiler.dump_properties()
+        fcompiler = get_fcompiler()
+        fcompiler.dump_properties()
         with cd('pymt_ecsimplesnow/lib'):
-            build_interoperability(compiler)
+            build_interoperability(fcompiler)
         _build_ext.run(self)
 
 
