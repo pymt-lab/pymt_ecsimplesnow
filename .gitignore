@@ -99,3 +99,8 @@ ENV/
 
 # mypy
 .mypy_cache/
+
+# Fortran pymt plugin
+bmi_interoperability.mod
+bmi_interoperability.o
+ecsimplesnow.c
