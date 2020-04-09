@@ -3,7 +3,7 @@
 !
 module bmi_interoperability
 
-  use, intrinsic :: iso_c_binding
+  use iso_c_binding
   use bmif_1_2
   use bmisnowf
 
