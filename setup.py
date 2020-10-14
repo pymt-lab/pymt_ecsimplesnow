@@ -2,6 +2,7 @@
 import os
 import sys
 import subprocess
+import contextlib
 import numpy as np
 
 import versioneer
@@ -12,7 +13,6 @@ from model_metadata.utils import get_cmdclass, get_entry_points
 
 from setuptools.command.build_ext import build_ext as _build_ext
 from numpy.distutils.fcompiler import new_fcompiler
-from scripting.contexts import cd
 
 
 common_flags = {
@@ -83,12 +83,20 @@ def build_interoperability(compiler):
         raise
 
 
+@contextlib.contextmanager
+def as_cwd(path):
+    prev_cwd = os.getcwd()
+    os.chdir(path)
+    yield
+    os.chdir(prev_cwd)
+
+
 class build_ext(_build_ext):
 
     def run(self):
         fcompiler = get_fcompiler()
         fcompiler.dump_properties()
-        with cd('pymt_ecsimplesnow/lib'):
+        with as_cwd('pymt_ecsimplesnow/lib'):
             build_interoperability(fcompiler)
         _build_ext.run(self)
 
