@@ -28,6 +28,7 @@ jobs:
       - uses: conda-incubator/setup-miniconda@v3
         with:
           miniforge-version: latest
+          activate-environment: fbld
           environment-file: environment.yml
           python-version: ${{ matrix.python-version }}
 
