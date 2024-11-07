@@ -12,7 +12,9 @@ dependencies:
   - fortran-compiler
   - c-compiler
   - cython
+  - meson
   - meson-python
+  - ninja
   - numpy
   - bmi-tester >=0.5.5
   - pymt >=1.3.2
