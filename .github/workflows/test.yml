@@ -42,6 +42,7 @@ jobs:
           pip install .[dev]
 
       - name: Test import
+        working-directory: ${{ github.workspace }}/examples
         run: |
           python -c 'import pymt_ecsimplesnow'
 
