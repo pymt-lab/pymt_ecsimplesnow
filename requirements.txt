@@ -1,5 +1,0 @@
-cython
-numpy
-model_metadata
-bmi-fortran=1.2
-ecsimplesnow
