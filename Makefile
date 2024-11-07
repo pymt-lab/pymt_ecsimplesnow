@@ -29,7 +29,7 @@ BROWSER := python -c "$$BROWSER_PYSCRIPT"
 help:
 	@python -c "$$PRINT_HELP_PYSCRIPT" < $(MAKEFILE_LIST)
 
-clean: clean-build clean-pyc clean-test ## remove all build, test, coverage and Python artifacts
+clean: clean-build clean-compile clean-pyc clean-test ## remove all build, test, coverage and Python artifacts
 
 clean-build: ## remove build artifacts
 	rm -fr build/
@@ -37,6 +37,13 @@ clean-build: ## remove build artifacts
 	rm -fr .eggs/
 	find . -name '*.egg-info' -exec rm -fr {} +
 	find . -name '*.egg' -exec rm -f {} +
+
+clean-compile: ## remove compilation artifacts
+	find . -name '*.c' -exec rm -f {} +
+	find . -name '*.mod' -exec rm -f {} +
+	find . -name '*.o' -exec rm -f {} +
+	find . -name '*.so' -exec rm -f {} +
+	rm -fr build/
 
 clean-pyc: ## remove Python file artifacts
 	find . -name '*.pyc' -exec rm -f {} +
@@ -55,7 +62,7 @@ lint: ## check style with flake8
 
 pretty:
 	find pymt_ecsimplesnow -name '*.py' | xargs isort
-	black setup.py pymt_ecsimplesnow
+	black . --check
 
 test: ## run tests quickly with the default Python
 	bmi-test pymt_ecsimplesnow.bmi:ECSimpleSnow -vvv
@@ -84,9 +91,8 @@ release: dist ## package and upload a release
 	twine upload dist/*
 
 dist: clean ## builds source and wheel package
-	python setup.py sdist
-	python setup.py bdist_wheel
+	python -m build --no-isolation
 	ls -l dist
 
 install: clean ## install the package to the active Python's site-packages
-	python setup.py develop
+	pip install ."[dev]"
