@@ -65,7 +65,11 @@ pretty:
 	black . --check
 
 test: ## run tests quickly with the default Python
-	bmi-test pymt_ecsimplesnow.bmi:ECSimpleSnow -vvv
+	bmi-test pymt_ecsimplesnow._bmi:ECSimpleSnow \
+		--config-file=${PWD}/examples/snow_model_test.cfg \
+		--root-dir=examples \
+		--bmi-version="1.2" \
+		-vvv
 
 test-all: ## run tests on every Python version with tox
 	tox
