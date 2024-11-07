@@ -5,7 +5,6 @@ import subprocess
 import contextlib
 import numpy as np
 
-import versioneer
 from setuptools import find_packages, setup
 
 from distutils.extension import Extension
@@ -101,14 +100,14 @@ class build_ext(_build_ext):
         _build_ext.run(self)
 
 
-cmdclass = get_cmdclass(pymt_components, cmdclass=versioneer.get_cmdclass())
+cmdclass = get_cmdclass(pymt_components)
 cmdclass["build_ext"] = build_ext
 
 setup(
     name="pymt_ecsimplesnow",
     author="Kang Wang",
     description="PyMT plugin for ecsimplesnow",
-    version=versioneer.get_version(),
+    version="0.3.dev0",
     setup_requires=["cython"],
     ext_modules=ext_modules,
     packages=packages,
