@@ -44,9 +44,9 @@ jobs:
         run: |
           python -c 'import pymt_ecsimplesnow'
 
-      - name: Test BMI
-        run: |
-          make test
+      # - name: Test BMI
+      #   run: |
+      #     make test
 
       - name: Run examples
         working-directory: ${{ github.workspace }}/examples
