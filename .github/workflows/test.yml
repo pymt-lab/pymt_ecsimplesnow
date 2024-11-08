@@ -3,13 +3,9 @@ name: Test
 on: [push, pull_request]
 
 jobs:
-  build-and-test:
-    # We want to run on external PRs, but not on our own internal PRs as they'll be run
-    # by the push to the branch. Without this if check, checks are duplicated since
-    # internal PRs match both the push and pull_request events.
+  build-test-unix:
     if:
-      github.event_name == 'push' || github.event.pull_request.head.repo.full_name !=
-      github.repository
+      github.event_name == 'push' || github.event.pull_request.head.repo.full_name != github.repository
 
     runs-on: ${{ matrix.os }}
 
@@ -19,12 +15,8 @@ jobs:
 
     strategy:
       matrix:
-        # os: [ubuntu-latest, macos-latest, windows-latest]
-        os: [windows-latest]
+        os: [ubuntu-latest, macos-latest]
         python-version: ["3.12"]
-
-    env:
-      LIBRARY_PREFIX: $env:CONDA_PREFIX\Library
 
     steps:
       - uses: actions/checkout@v4
@@ -43,7 +35,56 @@ jobs:
 
       - name: Build and install package
         run: |
-          FC=${{ env.LIBRARY_PREFIX }}\bin\flang.exe pip install .[dev]
+          pip install .[dev]
+
+      - name: Test import
+        working-directory: ${{ github.workspace }}/examples
+        run: |
+          python -c 'import pymt_ecsimplesnow'
+          python -c 'from pymt.models import ECSimpleSnow'
+
+      # The bmi-tester isn't available for bmi-fortran=1.2
+      # - name: Test BMI
+      #   run: |
+      #     make test
+
+      - name: Run examples
+        working-directory: ${{ github.workspace }}/examples
+        run: |
+          python ecsimplesnow_pymt_ex.py
+
+  build-test-windows:
+    if:
+      github.event_name == 'push' || github.event.pull_request.head.repo.full_name != github.repository
+
+    runs-on: windows-latest
+
+    defaults:
+      run:
+        shell: pwsh
+
+    env:
+      LIBRARY_PREFIX: $env:CONDA_PREFIX\Library
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ilammy/msvc-dev-cmd@v1
+      - uses: conda-incubator/setup-miniconda@v3
+        with:
+          miniforge-version: latest
+          activate-environment: fbld
+          environment-file: environment.yml
+          python-version: "3.12"
+
+      - name: Show conda installation info
+        run: |
+          conda info
+          conda list
+
+      - name: Build and install package
+        run: |
+          # FC="${{ env.LIBRARY_PREFIX }}\bin\flang.exe" pip install .[dev]
+          pip install .[dev]
 
       - name: Test import
         working-directory: ${{ github.workspace }}/examples
