@@ -6,7 +6,7 @@ project(
 )
 
 py = import('python').find_installation(pure: false)
-compiler = meson.get_compiler('fortran')
+compiler = meson.get_compiler('fortran', native: true)
 
 python_inc = py.get_path('data') / 'include'
 numpy_inc = run_command(
