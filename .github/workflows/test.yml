@@ -45,7 +45,9 @@ jobs:
         working-directory: ${{ github.workspace }}/examples
         run: |
           python -c 'import pymt_ecsimplesnow'
+          python -c 'from pymt.MODELS import ECSimpleSnow'
 
+      # The bmi-tester isn't available for bmi-fortran=1.2
       # - name: Test BMI
       #   run: |
       #     make test
