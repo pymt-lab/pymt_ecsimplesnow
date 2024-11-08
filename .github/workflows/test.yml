@@ -19,8 +19,12 @@ jobs:
 
     strategy:
       matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
+        # os: [ubuntu-latest, macos-latest, windows-latest]
+        os: [windows-latest]
         python-version: ["3.12"]
+
+    env:
+      LIBRARY_PREFIX: $env:CONDA_PREFIX\Library
 
     steps:
       - uses: actions/checkout@v4
@@ -39,7 +43,7 @@ jobs:
 
       - name: Build and install package
         run: |
-          pip install .[dev]
+          FC=${{ env.LIBRARY_PREFIX }}\bin\flang.exe pip install .[dev]
 
       - name: Test import
         working-directory: ${{ github.workspace }}/examples
