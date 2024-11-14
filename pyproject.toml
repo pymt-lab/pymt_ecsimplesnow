@@ -53,6 +53,9 @@ testing = [
   "bmi-tester>=0.5.4",
 ]
 
+[tool.setuptools.dynamic]
+version = {attr = "pymt_ecsimplesnow._version.__version__"}
+
 [tool.pytest.ini_options]
 minversion = "5.0"
 testpaths = ["pymt_ecsimplesnow", "tests"]
