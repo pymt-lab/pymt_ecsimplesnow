@@ -1,4 +1,4 @@
-name: ecsimplesnow
+name: pymt_ecsimplesnow
 language: fortran
-package: ecsimplesnow
+package: pymt_ecsimplesnow
 class: ECSimpleSnow

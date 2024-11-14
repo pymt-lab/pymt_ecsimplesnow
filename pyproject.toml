@@ -1,0 +1,89 @@
+[build-system]
+build-backend = "mesonpy"
+requires = ["cython", "numpy", "meson-python", "wheel"]
+
+[project]
+name = "pymt_ecsimplesnow"
+authors = [
+  {name = "Kang Wang", email = "wangkang1984@gmail.com"},
+]
+maintainers = [
+  {name = "Mark Piper", email = "mark.piper@colorado.edu"},
+]
+description = "PyMT plugin for the ECSimpleSnow model"
+license = {text = "MIT License"}
+classifiers=[
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: MacOS :: MacOS X",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+]
+requires-python = ">=3.10"
+keywords=["bmi", "pymt"]
+dynamic = ["version"]
+dependencies = [
+  "numpy",
+]
+
+[project.urls]
+homepage = "https://github.com/csdms"
+
+[project.entry-points."pymt.plugins"]
+ECSimpleSnow = "pymt_ecsimplesnow._bmi:ECSimpleSnow"
+
+[project.optional-dependencies]
+dev = [
+  "meson",
+  "meson-python",
+  "ninja",
+  "nox",
+]
+build = [
+  "build",
+  "twine",
+  "zest.releaser"
+]
+testing = [
+  "bmi-tester>=0.5.4",
+]
+
+[tool.pytest.ini_options]
+minversion = "5.0"
+testpaths = ["pymt_ecsimplesnow", "tests"]
+norecursedirs = [".*", "*.egg*", "build", "dist"]
+addopts = """
+    --ignore setup.py
+    --tb native
+    --strict-markers
+    --durations 16
+    --doctest-modules
+    -vvv
+"""
+doctest_optionflags = [
+    "NORMALIZE_WHITESPACE",
+    "IGNORE_EXCEPTION_DETAIL",
+    "ALLOW_UNICODE"
+]
+
+[tool.isort]
+multi_line_output = 3
+include_trailing_comma = true
+force_grid_wrap = 0
+combine_as_imports = true
+line_length = 88
+
+[tool.check-manifest]
+ignore = [
+  "pymt_ecsimplesnow/data",
+  "pymt_ecsimplesnow/data/**/*",
+]
+
+[tool.zest-releaser]
+tag-format = "v{version}"
+python-file-with-version = "pymt_ecsimplesnow/_version.py"

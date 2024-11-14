@@ -1,11 +1,7 @@
-#! /usr/bin/env python
+from pymt_ecsimplesnow._bmi import ECSimpleSnow
+from pymt_ecsimplesnow._version import __version__
 
-from .bmi import (ECSimpleSnow,
-)
-
-__all__ = ["ECSimpleSnow",
+__all__ = [
+    "__version__",
+    "ECSimpleSnow",
 ]
-
-from ._version import get_versions
-__version__ = get_versions()['version']
-del get_versions

@@ -1,2 +1,0 @@
-include versioneer.py
-include pymt_ecsimplesnow/_version.py

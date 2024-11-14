@@ -14,21 +14,18 @@ input_files_path:
   value:
     type: string
     default: ''
-    units: '-'
 land_surface_air__temperature_file:
   description:
     File with surface temperature values, in deg C
   value:
     type: string
     default: 'tair.csv'
-    units: '-'
 precipitation_mass_flux_file:
   description:
     File with precipitation values, in mm
   value:
     type: string
     default: 'prec.csv'
-    units: '-'
 snow_class:
   description:
     Snow climate class (a code from 0-7) (Sturm et al., 1995) 

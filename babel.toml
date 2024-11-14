@@ -1,0 +1,40 @@
+[library.ECSimpleSnow]
+language = "fortran"
+library = "bmisnowf"
+header = ""
+entry_point = "bmi_snow"
+
+[components.ECSimpleSnow]
+language = "fortran"
+library = "bmisnowf"
+header = ""
+entry_point = "bmi_snow"
+
+[build]
+undef_macros = []
+define_macros = []
+libraries = []
+library_dirs = []
+include_dirs = []
+extra_compile_args = []
+
+[package]
+name = "pymt_ecsimplesnow"
+requirements = []
+
+[info]
+github_username = "wk1984"
+package_author = "Kang Wang"
+package_author_email = "wangkang1984@gmail.com"
+package_license = "MIT License"
+summary = "PyMT plugin for the ECSimpleSnow model"
+
+[ci]
+python_version = [
+    "3.12",
+]
+os = [
+    "linux",
+    "mac",
+    "windows",
+]
