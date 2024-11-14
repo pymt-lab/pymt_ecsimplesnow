@@ -2,7 +2,7 @@
 
 A record of changes for the *pymt_ecsimplesnow* package.
 
-## 0.2.7 (unreleased)
+## 0.3 (2024-11-14)
 
 - Update build system for Python >=3.12 (#11)
 
